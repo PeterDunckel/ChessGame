@@ -1,8 +1,10 @@
 // EGR327 Project CBU
 // Piece.java source file for the Piece class
 // Created 11-2-15 PWD
-// This class is used for generalizing piece information and keeping track of a piece's position
-
+// This class is used for generalizing piece information and keeping track of a piece's position 
+// REVISION HISTORY:
+// Date By Details
+//
 
 package Chess;
 

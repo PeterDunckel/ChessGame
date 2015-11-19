@@ -1,3 +1,11 @@
+// EGR327 Project CBU
+// Spot.java			 source file for the Spot class
+// Created 11/15/2015 PWD
+// This class is used for a spot on a chess board
+// REVISION HISTORY:
+// Date By Details
+//
+
 package Chess;
 
 import javax.swing.JButton;

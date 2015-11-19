@@ -1,3 +1,11 @@
+// EGR327 Project CBU
+// ChessGUI.java			 source file for the Chess GUI
+// Created 11/15/2015 JT
+// This class is used for the GUI for playing a chess game
+// REVISION HISTORY:
+// Date By Details
+//
+
 package Chess;
 
 import java.awt.BorderLayout;

@@ -1,9 +1,11 @@
 // EGR327 Project CBU
 // King.java source file for the King class
-// Created 11-2-15 NN
-// This class is used for the king piece
-
-// UPDATED ON 11/16/2015
+// Created 11-2-15 PWD
+// This class is used for the king piece 
+// REVISION HISTORY:
+// Date By Details
+// 11/18/2015 JT Added additional functionality to possibleMoves function to check if a piece is in the way of a move 
+//
 
 package Chess;
 

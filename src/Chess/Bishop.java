@@ -2,6 +2,10 @@
 // Bishop.java source file for the Bishop class
 // Created 11-2-15 PWD
 // This class is used for the Bishop piece
+// REVISION HISTORY:
+// Date By Details
+// 11/18/2015 JT Added additional functionality to possibleMoves function to check if a piece is in the way of a move 
+//
 
 package Chess;
 

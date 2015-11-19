@@ -1,3 +1,11 @@
+// EGR327 Project CBU
+// Player.java			 source file for the Player class
+// Created 11/15/2015 PWD
+// This class is used for keeping account of a chess Player status and information
+// REVISION HISTORY:
+// Date By Details
+//
+
 package Chess;
 
 public class Player {

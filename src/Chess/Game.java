@@ -1,3 +1,11 @@
+// EGR327 Project CBU
+// Game.java source file for the Game class
+// Created 11-2-15 PWD
+// This class is used for the rules, scores, and board of the Chess program
+// REVISION HISTORY:
+// Date By Details
+//
+
 package Chess;
 
 public class Game {

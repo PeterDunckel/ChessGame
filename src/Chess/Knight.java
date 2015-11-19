@@ -1,7 +1,10 @@
 // EGR327 Project CBU
 // Knight.java source file for the Knight class
-// Created 11-2-15 NN
+// Created 11-2-15 PWD
 // This class is used for the Knight piece
+// REVISION HISTORY:
+// Date By Details
+//
 
 package Chess;
 
@@ -25,6 +28,8 @@ public class Knight extends Piece{
 		return legalMoves;
 	}
 
+	
+	//TODO: optimize the possible move code below
 	//Knight Functionality functions
 	public int[][] possibleMoves(){
 		int[][] board = new int[8][8];

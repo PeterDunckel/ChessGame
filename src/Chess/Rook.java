@@ -2,7 +2,7 @@
 // Rook.java source file for the Rook class
 // Created 11-2-15 JT
 // This class is used for the Rook piece
-
+//
 // UPDATED ON 11/16/2015
 
 package Chess;
