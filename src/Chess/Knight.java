@@ -11,12 +11,11 @@ package Chess;
 public class Knight extends Piece{
 
 	private int legalMoves;
-
+	
 
 	//Constructor
-	public Knight( int legalM){
+	public Knight(){
 		super(positionR, positionC, ptVal, name, name, isOwner);
-		legalMoves = legalM; 
 	}
 
 	//Set and Get functions
@@ -31,129 +30,64 @@ public class Knight extends Piece{
 	
 	//TODO: optimize the possible move code below
 	//Knight Functionality functions
-	public int[][] possibleMoves(){
-		int[][] board = new int[8][8];
-		
-		//Knight in row 0 or 1
-		if( (positionR == 0) || (positionR == 1)){
-			if( positionC <= 1){
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+1][positionC+2] = 1;
-				if(positionR == 1)
-					board[positionR-1][positionC+2] = 1;
+	public int[][] possibleMoves(Spot[][]board){
+		int[][] newBoard = new int[8][8];
+		Spot tempSpot;
+		//All moves for knight, anywhere on the board
+		if(positionR - 2 >= 0 && positionC + 1 <=7 )  //Checks boundaries of the board    
+		{ 
+			tempSpot = board[positionR -2][positionC + 1];
+			if(tempSpot.getOwner() == owner) {
+				System.out.println("Owner is in the way");
 			}
-			else if( positionC >= 6){
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+1][positionC-2] = 1;
-				if(positionR == 1)
-					board[positionR-1][positionC-2] = 1;
-			}
-			else{
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+1][positionC-2] = 1;
-				board[positionR+1][positionC+2] = 1;
-				if(positionR == 1){
-					board[positionR-1][positionC+2] = 1;
-					board[positionR-1][positionC-2] = 1;
-				}				
-			}				
-		}
-		//Knight in row 6 or 7
-		else if( (positionR == 6) || (positionR == 7)){
-			if( positionC <= 1){
-				board[positionR-2][positionC-1] = 1;
-				board[positionR-2][positionC+1] = 1;
-				board[positionR-1][positionC+2] = 1;
-				if(positionR == 6)
-					board[positionR+1][positionC+2] = 1;
-			}
-			else if( positionC >= 6){
-				board[positionR-2][positionC+1] = 1;
-				board[positionR-2][positionC-1] = 1;
-				board[positionR-1][positionC-2] = 1;
-				if(positionR == 6)
-					board[positionR+1][positionC-2] = 1;
-			}
-			else{
-				board[positionR-2][positionC+1] = 1;
-				board[positionR-2][positionC-1] = 1;
-				board[positionR-1][positionC-2] = 1;
-				board[positionR-1][positionC+2] = 1;
-				if(positionR == 6){
-					board[positionR+1][positionC+2] = 1;
-					board[positionR+1][positionC-2] = 1;
-				}				
-			}				
-		}
-		//Knight in column 0 or 1
-		else if( (positionC == 0) || (positionC == 1)){
-			if( positionR <= 1){
-				board[positionR-1][positionC+2] = 1;
-				board[positionR+1][positionC+2] = 1;
-				board[positionR+2][positionC+1] = 1;
-				if(positionC == 1)
-					board[positionR+2][positionC-1] = 1;
-			}
-			else if( positionR >= 6){
-				board[positionR+1][positionC+2] = 1;
-				board[positionR-1][positionC+2] = 1;
-				board[positionR-2][positionC+1] = 1;
-				if(positionC == 1)
-					board[positionR-2][positionC-1] = 1;
-			}
-			else{
-				board[positionR+1][positionC+2] = 1;
-				board[positionR-1][positionC+2] = 1;
-				board[positionR-2][positionC+1] = 1;
-				board[positionR+2][positionC+1] = 1;
-				if(positionC == 1){
-					board[positionR+2][positionC-1] = 1;
-					board[positionR-2][positionC-1] = 1;
-				}				
-			}				
-		}
-		//Knight in column 6 or 7
-		else if( (positionC == 6) || (positionC == 7)){
-			if( positionR <= 1){
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+1][positionC+2] = 1;
-				if(positionC == 6)
-					board[positionR-1][positionC+2] = 1;
-			}
-			else if( positionR >= 6){
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+1][positionC-2] = 1;
-				if(positionC == 6)
-					board[positionR-1][positionC-2] = 1;
-			}
-			else{
-				board[positionR+2][positionC+1] = 1;
-				board[positionR+2][positionC-1] = 1;
-				board[positionR+1][positionC-2] = 1;
-				board[positionR+1][positionC+2] = 1;
-				if(positionC == 6){
-					board[positionR-1][positionC+2] = 1;
-					board[positionR-1][positionC-2] = 1;
-				}				
-			}				
-		}
-		//Knight in rows 2-5 and columns 2-5
-		else{
-			board[positionR+2][positionC+1] = 1;
-			board[positionR+2][positionC-1] = 1;
-			board[positionR+1][positionC-2] = 1;
-			board[positionR+1][positionC+2] = 1;
-			board[positionR-1][positionC+2] = 1;
-			board[positionR-1][positionC-2] = 1;
-			board[positionR-2][positionC+1] = 1;
-			board[positionR-2][positionC-1] = 1;				
-		}
-		
-		return board;
+		    }
+			if(positionR - 2 <= 0 && positionC - 1 <=0 ) {
+				tempSpot = board[positionR -2][positionC - 1];
+				if(tempSpot.getOwner() == owner) {
+					System.out.println("Owner is in the way");
+				}
+			    }
+				if(positionR - 1 <= 0 && positionC - 2 <=0 ) {
+					tempSpot = board[positionR -1][positionC -2];
+					if(tempSpot.getOwner() == owner) {
+						System.out.println("Owner is in the way");
+					}
+				    }
+					  if(positionR - 1 <= 0 && positionC + 2 >=7 ) {
+						tempSpot = board[positionR -1][positionC + 2];
+						if(tempSpot.getOwner() == owner) {
+							System.out.println("Owner is in the way");
+						}	
+					    }
+						  if(positionR +1 <= 7 && positionC - 2 >= 0 ) {
+							tempSpot = board[positionR + 1][positionC - 2];
+							if(tempSpot.getOwner() == owner) {
+								System.out.println("Owner is in the way");
+							}	
+						    }
+							  if(positionR + 1 <= 7 && positionC + 2 <=7 ) {
+								tempSpot = board[positionR + 1][positionC + 2];
+								if(tempSpot.getOwner() == owner) {
+									System.out.println("Owner is in the way");
+								}
+							    }
+								 if(positionR + 2 <= 7 && positionC - 1 >= 0 ) {
+									tempSpot = board[positionR + 2][positionC - 1];
+									if(tempSpot.getOwner() == owner) {
+										System.out.println("Owner is in the way");
+									}
+								    }
+									  if(positionR + 2 <= 7 && positionC + 1 <=7 ) {
+										tempSpot = board[positionR + 2][positionC + 1];
+										if(tempSpot.getOwner() == owner) {
+											System.out.println("Owner is in the way");
+										}
+										} else {
+											newBoard[positionR -2][positionC] = 1; 
+										}
+									  			return newBoard;
+
 	}
 }
+	
+			

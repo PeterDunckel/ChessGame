@@ -15,9 +15,8 @@ public class Bishop extends Piece{
 
 
 	//Constructor
-	public Bishop( int legalM){
+	public Bishop(){
 		super(positionR, positionC, ptVal, name, name, isOwner);
-		legalMoves = legalM; 
 	}
 
 	//Set and Get functions

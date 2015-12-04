@@ -13,9 +13,8 @@ public class Queen extends Piece {
 
 
 	//Constructor
-	public Queen( int legalM){
-		super(positionR, positionC, ptVal, name, name, isOwner);
-		legalMoves = legalM; 
+	public Queen(){
+		super(positionR, positionC, ptVal, name, name, isOwner); 
 	}
 
 	//Set and Get functions

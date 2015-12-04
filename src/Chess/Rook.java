@@ -13,8 +13,7 @@ public class Rook extends Piece{
 
 	//Constructor
 	public Rook(){
-		super(positionR, positionC, ptVal, name, name, isOwner);
-		
+		super(positionR, positionC, ptVal, name, name, isOwner);		
 	}
 
 	//Set and Get functions

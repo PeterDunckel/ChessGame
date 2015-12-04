@@ -19,7 +19,11 @@ public class Spot extends JButton{
 		private int posR;
 		private int posC;
 		
-		//Constructor
+		//Constructor		
+		public Spot() {
+			// TODO Auto-generated constructor stub
+		}
+		
 		Spot(boolean emp, String pID, String own, boolean isS, int pR, int pC){
 			isEmpty = emp;
 			pieceID = pID;
@@ -29,10 +33,6 @@ public class Spot extends JButton{
 			posC = pC;
 		}
 		
-		public Spot() {
-			// TODO Auto-generated constructor stub
-		}
-
 		//Get and Set functions
 		public boolean getIsEmpty(){
 			return isEmpty;
@@ -53,10 +53,17 @@ public class Spot extends JButton{
 			return posC;
 		}
 		
+		public void setPieceID(String pid){
+			pieceID = pid;
+		}
+		public void setOwner(String own){
+			owner = own;
+		}
 		public void setPosR(int pR){
 			posR = pR;
 		}
 		public void setPosC(int pC){
 			posC = pC;
 		}
+		
 }

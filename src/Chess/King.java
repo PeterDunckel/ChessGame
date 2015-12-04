@@ -15,10 +15,14 @@ private int legalMoves;
 
 
 //Constructor
-public King(boolean isC, int legalM){
+public King(){
+	super(positionR, positionC, ptVal, name, name, isOwner);	
+}
+
+public King(boolean isC){
 	super(positionR, positionC, ptVal, name, name, isOwner);
 	isCheck = isC;
-	legalMoves = legalM; 
+	
 }
 
 //Set and Get functions

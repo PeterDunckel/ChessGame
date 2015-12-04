@@ -15,9 +15,8 @@ public class Pawn extends Piece{
 
 
 	//Constructor
-	public Pawn( int legalM){
+	public Pawn(){
 		super(positionR, positionC, ptVal, name, name, isOwner);
-		legalMoves = legalM; 
 	}
 
 	//Set and Get functions
@@ -36,109 +35,58 @@ public class Pawn extends Piece{
 	}
 
 	//Pawn Functionality functions
-	public int[][] possibleMoves(){
-		int[][] board = new int[8][8];
+	public int[][] possibleMoves(Spot[][]board){
+		int[][] newBoard = new int[8][8];
+		Spot tempSpot;
+		
 		if(owner == "White"){
-			// Initial position starting in Row 1 Col 0
-			if(positionR== 1 && positionC == 0) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC] = 1;
+			//White Pawn is attacking to the right
+			tempSpot = board[positionR - 1][positionC + 1];
+			if(tempSpot.getOwner() != owner && tempSpot.getOwner() != "" && positionR - 1 >=0 && positionC + 1 <= 7) { 
+				newBoard[positionR - 1][positionC + 1] = 1;
+			}
+			//White Pawn attacking to the left 
+			tempSpot = board[positionR -1][positionC -1];
+			if(tempSpot.getOwner() != owner && tempSpot.getOwner() != "" && positionR - 1 >= 0 && positionC - 1 >= 0) {
+				newBoard[positionR -1][positionC -1]= 1;
+			
 			} 
-			//Initial position starting in Row 1 Col 1
-			else if(positionR == 1 && positionC == 1) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 2
-			else if(positionR == 1 && positionC == 2) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 3
-			else if(positionR == 1 && positionC == 3) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 4
-			else if(positionR == 1 && positionC == 4) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 5
-			else if(positionR == 1 && positionC == 5) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 6
-			else if(positionR == 1 && positionC == 6) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Initial position starting in Row 1 Col 7
-			else if(positionR == 1 && positionC == 7) {
-				board[positionR+1][positionC] = 1;
-				board[positionR+2][positionC]= 1;
-			}
-			//Anywhere on the board after first move 
-			else if(positionR >= 2 && positionC >= 0) {
-				board[positionR+1][positionC] = 1;
-				
+			//White pawn moving from initial spot
+			tempSpot = board[positionR -2][positionC];
+			if(inInitialSpot == true && tempSpot.getOwner() == "") {
+				newBoard[positionR -2][positionC] = 1;					
+			} 
+			
+			//White pawn moving anywhere
+			tempSpot = board[positionR -1][positionC];
+			if(positionR -1 >= 0 && tempSpot.getOwner() == ""){
+				newBoard[positionR - 1][positionC] =1;
 			}
 		}
-			if(owner == "Black") {
-				// Initial position starting in Row 6 Col 
-				if(positionR== 6 && positionC == 0) {
-					board[positionR+1][positionC] = 1;
-					board[positionR+2][positionC] = 1;
-				} 
-				//Initial position starting in Row 6 Col 1
-				else if(positionR == 6 && positionC == 1) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 2
-				else if(positionR == 6 && positionC == 2) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 3
-				else if(positionR == 6 && positionC == 3) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 4
-				else if(positionR == 6 && positionC == 4) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 5
-				else if(positionR == 6 && positionC == 5) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 6
-				else if(positionR == 6 && positionC == 6) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Initial position starting in Row 6 Col 7
-				else if(positionR == 6 && positionC == 7) {
-					board[positionR-1][positionC] = 1;
-					board[positionR-2][positionC]= 1;
-				}
-				//Anywhere on the board after first move 
-				else if(positionR <= 5 && positionC >= 0) {
-					board[positionR-1][positionC] = 1;
-					
-				}
-			}
+		
+		if(owner == "Black") {
 			
-				for(int ii=0; ii <8; ii++){
-					for(int jj=0; jj<8; jj++){
-					if(board[ii][jj] != 1)
-						board[ii][jj] = 0;
-					}
-				}
-			return board;
+			//Black Pawn attacking to the right 
+			tempSpot = board[positionR + 1][positionC + 1];
+			if(tempSpot.getOwner() != owner && tempSpot.getOwner() != null && positionR +1 <=7 && positionC <= 7) {
+				newBoard[positionR + 1][positionC + 1] = 1;
+			}
+			//Black Pawn attacking to the left 
+			tempSpot = board[positionR + 1][positionC -1];
+			if(tempSpot.getOwner() != owner && tempSpot.getOwner() != null && positionR + 1 <= 7 && positionC -1 >= 0) {
+				newBoard[positionR + 1][positionC -1]= 1;
+			}	
+			//Pawn in initial spot can move forward 2 
+				tempSpot = board[positionR + 2][positionC];
+			 if(inInitialSpot == true) {
+				newBoard[positionR + 2][positionC]=1;
+			}				
+				//Black pawn moving anywhere on board
+				tempSpot = board[positionR - 1][positionC];
+			 if(tempSpot.getOwner() == null){
+				newBoard[positionR - 1][positionC] =1;
+			}
+		}
+		return newBoard; 	
 	}
 }
