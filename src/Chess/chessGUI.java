@@ -95,11 +95,13 @@ public class chessGUI extends JFrame {
 						
 							int r = spt.getPosR();
 							int c = spt.getPosC();
-
+							boolean isInCheck;
+							isInCheck = newGame.isInCheck(guiSpotsArray, newGame.getCurrentPlayer());
+							System.out.println(isInCheck);
 							// if value stored as possible move on gameBoard is '1'
-							if(tempBoard[guiSpotsArray[r][c].getPosR()][guiSpotsArray[r][c].getPosC()] == 1 && !isBoardReset){
-
-
+							if(tempBoard[guiSpotsArray[r][c].getPosR()][guiSpotsArray[r][c].getPosC()] == 1 
+									&& !isBoardReset && isInCheck){
+								
 								//Empty last spot the piece was at
 								guiSpotsArray[selectedSpot.getPosR()][selectedSpot.getPosC()].setIsEmpty(true);
 
@@ -170,26 +172,12 @@ public class chessGUI extends JFrame {
 		newPiece = newGame.checkPieceType(sptBtn);
 		
 		//Set piece to piece to spot on board
-		System.out.println(newPiece.getName());
 		newPiece.setOwner(newGame.getCurrentPlayer());
 		newPiece.setPositionR(sptBtn.getPosR());
 		newPiece.setPositionC(sptBtn.getPosC());
 		//Get possible moves of piece on board
 		
-//		for(int i = 0; i < 8 ; i++){
-//			for(int j = 0; j<8; j++){
-//				guiSpotsArray[i][j].printData();
-//			}
-//		}
-		
 		tempBoard = newPiece.possibleMoves(guiSpotsArray);
-		
-		for(int i = 0; i < 8 ; i++){
-			for(int j = 0; j<8; j++){
-				System.out.print(tempBoard[i][j] + " ");
-			}
-			System.out.println("");
-		}
 		//Display the possible moves on GUI
 		guiSpotsArray = newGame.displayPossibleMoves(tempBoard, guiSpotsArray);
 	}

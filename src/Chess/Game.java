@@ -66,23 +66,51 @@ public class Game {
 	}
 	
 	//Function to check if the king is in check for the player
-	public void checkForCheck( Spot[][]guiBoard, String playerToCheck){
+	public boolean isInCheck( Spot[][]guiBoard, String playerToCheck){
 		String pieceID;
 		String owner;
+		Piece newPiece;
+		int kingPosR = 999;
+		int kingPosC = 999;
+		int[][] totalBoard = new int[8][8];
+		for(int r=0; r < 8; r++){
+			for(int c=0; c < 8; c++){
+				totalBoard[r][c] = 0;				
+			}
+		}		
+		int[][] tempBoard = new int[8][8];
+		
 		for(int row=0; row < 8; row++){
 			for(int col=0; col < 8; col++){
 				pieceID = guiBoard[row][col].getPieceID();
 				owner = guiBoard[row][col].getOwner();
-				if(owner == playerToCheck){
-					
+				if(owner == playerToCheck && pieceID == "King"){
+					kingPosR = row;
+					kingPosC = col;
 				}
-			}
+				else if(owner != null){
+					newPiece = checkPieceType(guiBoard[row][col]);
+					tempBoard = newPiece.possibleMoves(guiBoard);
+					for(int r=0; r < 8; r++){
+						for(int c=0; c < 8; c++){
+							if((tempBoard[r][c] == 1 && pieceID != "Pawn")
+									|| tempBoard[r][c] == 2 ){
+								if(tempBoard[r][c] != totalBoard[r][c]){
+									totalBoard[r][c] = tempBoard[r][c];
+								}							
+							}
+						}
+					}
+				}
+				
+			}			
 		}
-		//if piece moved next possible move targets king
-		//Other players King is in check
-		//Only piece that other player can move is King or 
-		//piece that can disrupt attack line on King without causing check
-		//Or kill piece targeting King		
+
+		if(totalBoard[kingPosR][kingPosC] ==  1 ||
+				totalBoard[kingPosR][kingPosC] ==  2 && kingPosR < 8){
+			return true;
+		}
+		return false;
 	}
 	
 	//Determine if player is in checkmate
@@ -189,10 +217,6 @@ public class Game {
 		
 	}
 	
-	//Set a timer for timing the game
-	public void timer(){
-		
-	}
 	
 	//Check whether their is stalemate
 	public void chkStalemate(){
@@ -232,7 +256,7 @@ public class Game {
 			
 			for(int c = 0; c < 8; c++){
 				
-				System.out.print(board[r][c]);
+				//System.out.print(board[r][c]);
 				
 				if(board[r][c] == 1){
 					
@@ -250,7 +274,7 @@ public class Game {
 				}
 					
 			}
-			System.out.println(" ");
+			//System.out.println(" ");
 		}		
 		
 		return guiBoard;
