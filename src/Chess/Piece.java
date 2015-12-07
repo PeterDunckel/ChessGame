@@ -36,6 +36,7 @@ public class Piece {
 	}
 	
 	//Virtual function
+	
 	public int[][] possibleMoves(Spot[][] gameBoard) {
 		return null;
 	}

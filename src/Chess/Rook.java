@@ -26,60 +26,76 @@ public class Rook extends Piece{
 	}
 
 	//Rook Functionality functions
+	@Override
 	public int[][] possibleMoves(Spot[][] board){
 		int[][] newBoard = new int[8][8];
 		
+boolean[] isPossible = new boolean[8];
+		
+		for( int pos = 0; pos <8; pos++){
+			isPossible[pos] = true;
+		}
+		
 		for( int ii = 1; ii <= 7 ; ii++ ){			
-			 //set spot to be looked
-			Spot temp = board[positionR][positionC];	//at on the game board
+			Spot temp = board[positionR][positionC]; //set spot to be looked
+													//at on the game board		
+			
+			
+			
+			//at on the game board			
 			//Move Straight Across		
 			//Move straight from row 0 to 7 
 			
-			if((positionR+ii) <= 7 ){
-				temp = board[positionR +ii][positionC];
-				if(temp.getOwner() == owner)
-					break;
-				if( temp.getOwner() != owner && temp.getOwner() != ""){
+			if((positionR+ii) <= 7 && isPossible[0] == true){
+				temp = board[positionR+ii][positionC];
+				if(temp.getOwner() == owner){
+					isPossible[0] = false;
+				} else if( temp.getOwner() != owner && temp.getOwner() != null){
 					newBoard[positionR+ii][positionC] = 1;
-					break;
+					isPossible[0] = false;
+				} else {
+					newBoard[positionR+ii][positionC] = 1;
 				}
-				newBoard[positionR+ii][positionC] = 1;
-			}
-			//Move straight from row 7 to 0 
 			
-			if((positionR - ii) >= 0 ){
-				temp = board[positionR - ii][positionC];
-				if(temp.getOwner() == owner)
-					break;
-				if( temp.getOwner() != owner && temp.getOwner() != ""){
+			}
+			
+			//Move straight from row 7 to 0
+			if((positionR-ii) >= 0 && isPossible[1] == true){
+				temp = board[positionR-ii][positionC];
+				if(temp.getOwner() == owner){
+					isPossible[1] = false;
+				} else if( temp.getOwner() != owner && temp.getOwner() != null){
 					newBoard[positionR-ii][positionC] = 1;
-					break;
+					isPossible[1] = false;
+				} else {
+					newBoard[positionR-ii][positionC] = 1;
 				}
-				newBoard[positionR-ii][positionC] = 1;
 			}
+			
 			//Move straight from col 0 to 7 
-			
-			if((positionC+ii) <= 7 ){
-				temp = board[positionR][positionC + ii];
-				if(temp.getOwner() == owner)
-					break;
-				if( temp.getOwner() != owner && temp.getOwner() != ""){
+			if((positionC+ii) <= 7 && isPossible[2] == true){
+				temp = board[positionR][positionC+ii];
+				if(temp.getOwner() == owner){
+					isPossible[2] = false;
+				} else if( temp.getOwner() != owner && temp.getOwner() != null){
 					newBoard[positionR][positionC+ii] = 1;
-					break;
+					isPossible[2] = false;
+				} else {
+					newBoard[positionR][positionC+ii] = 1;
 				}
-				newBoard[positionR][positionC+ii] = 1;
 			}
-			//Move straight from col 7 to 0 
 			
-			if((positionC-ii) >= 0 ){
-				temp = board[positionR][positionC - ii];
-				if(temp.getOwner() == owner)
-					break;
-				if( temp.getOwner() != owner && temp.getOwner() != ""){
+			//Move straight from col 7 to 0 	
+			if((positionC-ii) >= 0 && isPossible[3] == true){
+				temp = board[positionR][positionC-ii];
+				if(temp.getOwner() == owner){
+					isPossible[3] = false;
+				} else if( temp.getOwner() != owner && temp.getOwner() != null){
 					newBoard[positionR][positionC-ii] = 1;
-					break;
+					isPossible[3] = false;
+				} else {
+					newBoard[positionR][positionC-ii] = 1;
 				}
-				newBoard[positionR][positionC-ii] = 1;
 			}
 		}
 

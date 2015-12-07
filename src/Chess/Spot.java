@@ -33,6 +33,12 @@ public class Spot extends JButton{
 			posC = pC;
 		}
 		
+		public Spot(Spot spotToCopy){
+			
+			this(spotToCopy.isEmpty, spotToCopy.getPieceID(), spotToCopy.getOwner(), spotToCopy.getIsSelected(), spotToCopy.getPosR(), spotToCopy.getPosC());
+			
+		}
+		
 		//Get and Set functions
 		public boolean getIsEmpty(){
 			return isEmpty;
@@ -53,6 +59,16 @@ public class Spot extends JButton{
 			return posC;
 		}
 		
+		public void setIsEmpty(boolean isEmp){
+			isEmpty = isEmp;
+			//if spot is empty then there is no 
+			//piece or owner
+			if(isEmpty){
+				setPieceID(null);
+				setOwner(null);
+				setText(null);
+			}
+		}
 		public void setPieceID(String pid){
 			pieceID = pid;
 		}
@@ -65,5 +81,16 @@ public class Spot extends JButton{
 		public void setPosC(int pC){
 			posC = pC;
 		}
+		public void setPieceSpot(String pid, String own, int pR, int pC ){
+			isEmpty = false;
+			pieceID = pid;
+			owner = own;
+			posR = pR;
+			posC = pC;
+		}
 		
+		
+		public void printData(){
+			System.out.println(isEmpty +" "+ pieceID +" "+ owner +" "+ isSelected +" "+ posR +" "+ posC +"\n");
+		}
 }
