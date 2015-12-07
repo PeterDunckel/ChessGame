@@ -126,9 +126,10 @@ public class chessGUI extends JFrame {
 				
 				
 				if (alt){
-					guiSpotsArray[row][col].setBackground(Color.BLACK);
+					guiSpotsArray[row][col].setBackground(new Color(142,98,56));
 					alt = false;
 				} else {
+					guiSpotsArray[row][col].setBackground(Color.white);
 					alt = true;
 				}
 				contentPane.add(guiSpotsArray[row][col]);
@@ -228,34 +229,52 @@ public class chessGUI extends JFrame {
 				if(guiSpotsArray[row][col].getPieceID() != null){
 					switch(guiSpotsArray[row][col].getPieceID()){
 					case "King":
-						System.out.println("KING");
-						guiSpotsArray[row][col].setText("King");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));
+						//System.out.println("KING");
+						//guiSpotsArray[row][col].setText("King");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhiteKing.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackKing.png"));
 						break;
 					case "Queen":
-						System.out.println("Queen");
-						guiSpotsArray[row][col].setText("Queen");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));
+						//System.out.println("Queen");
+						//guiSpotsArray[row][col].setText("Queen");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhiteQueen.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackQueen.png"));
 						break;
 					case "Bishop":
-						System.out.println("Bishop");
-						guiSpotsArray[row][col].setText("Bishop");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));
+						//System.out.println("Bishop");
+						//guiSpotsArray[row][col].setText("Bishop");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhiteBishop.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackBishop.png"));
 						break;
 					case "Knight":
-						System.out.println("Knight");
-						guiSpotsArray[row][col].setText("Knight");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));
+						//System.out.println("Knight");
+						//guiSpotsArray[row][col].setText("Knight");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhiteHorse.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackHorse.png"));
 						break;
 					case "Rook":
-						System.out.println("Rook");
-						guiSpotsArray[row][col].setText("Rook");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));
+						//System.out.println("Rook");
+						//guiSpotsArray[row][col].setText("Rook");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhiteRook.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackRook.png"));
 						break;
 					case "Pawn":
-						System.out.println("Pawn");
-						guiSpotsArray[row][col].setText("Pawn");
-						guiSpotsArray[row][col].setIcon(new ImageIcon("KingIcon.png"));	
+						//System.out.println("Pawn");
+						//guiSpotsArray[row][col].setText("Pawn");
+						if(guiSpotsArray[row][col].getOwner() == "White")
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\WhitePawn.png"));
+						else
+							guiSpotsArray[row][col].setIcon(new ImageIcon("Resources\\BlackPawn.png"));
 						break;
 					};
 				}
