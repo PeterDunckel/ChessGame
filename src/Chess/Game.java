@@ -12,6 +12,7 @@ package Chess;
 
 import java.awt.Color;
 
+import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 
 public class Game {
@@ -54,7 +55,8 @@ public class Game {
 		
 		gameBoard[r][c].setPieceSpot(pieceSpotInfo.getPieceID(), pieceSpotInfo.getOwner(), 
 				r, c);
-		guiBoardSpot.setText(pieceSpotInfo.getPieceID());
+		guiBoardSpot.setIcon(new ImageIcon("Resources\\"+guiBoardSpot.getOwner()+guiBoardSpot.getPieceID()+".png"));
+		
 		guiBoardSpot.setPieceSpot(pieceSpotInfo.getPieceID(), pieceSpotInfo.getOwner(), 
 				r, c);
 		
@@ -65,21 +67,27 @@ public class Game {
 		}
 	}
 	
+	//TODO: Optimize function further
 	//Function to check if the king is in check for the player
 	public boolean isInCheck( Spot[][]guiBoard, String playerToCheck){
+		
 		String pieceID;
 		String owner;
 		Piece newPiece;
 		int kingPosR = 999;
 		int kingPosC = 999;
-		int[][] totalBoard = new int[8][8];
-		for(int r=0; r < 8; r++){
-			for(int c=0; c < 8; c++){
-				totalBoard[r][c] = 0;				
-			}
-		}		
-		int[][] tempBoard = new int[8][8];
+		Rook tempRook = new Rook();
+		Bishop tempBishop = new Bishop();
+		Knight tempKnight = new Knight();
+		Pawn tempPawn = new Pawn();
+		int[][] tempBoardPawn = new int[8][8];
+		int[][] tempBoardRook = new int[8][8];
+		int[][] tempBoardBishop = new int[8][8];
+		int[][] tempBoardKnight = new int[8][8];
 		
+		
+		
+		//Find where king is at
 		for(int row=0; row < 8; row++){
 			for(int col=0; col < 8; col++){
 				pieceID = guiBoard[row][col].getPieceID();
@@ -88,28 +96,66 @@ public class Game {
 					kingPosR = row;
 					kingPosC = col;
 				}
-				else if(owner != null){
-					newPiece = checkPieceType(guiBoard[row][col]);
-					tempBoard = newPiece.possibleMoves(guiBoard);
-					for(int r=0; r < 8; r++){
-						for(int c=0; c < 8; c++){
-							if((tempBoard[r][c] == 1 && pieceID != "Pawn")
-									|| tempBoard[r][c] == 2 ){
-								if(tempBoard[r][c] != totalBoard[r][c]){
-									totalBoard[r][c] = tempBoard[r][c];
-								}							
-							}
+			}
+		}
+		System.out.println(kingPosR + ", " + kingPosC);
+		tempRook.setPositionR(kingPosR);
+		tempRook.setPositionR(kingPosC);
+		tempBishop.setPositionC(kingPosR);
+		tempBishop.setPositionC(kingPosC);
+		tempKnight.setPositionC(kingPosR);
+		tempKnight.setPositionC(kingPosC);
+		tempPawn.setPositionC(kingPosR);
+		tempPawn.setPositionC(kingPosC);
+		
+		tempBoardRook = tempRook.possibleMoves(guiBoard);
+		tempBoardBishop = tempBishop.possibleMoves(guiBoard);
+		tempBoardKnight = tempKnight.possibleMoves(guiBoard);
+		tempBoardPawn = tempPawn.possibleMoves(guiBoard);
+		
+		for(int r=0; r < 8; r++){
+			for(int c=0; c < 8; c++){
+				
+				if(tempBoardRook[r][c] == 1){
+					if(guiBoard[r][c].getOwner() != playerToCheck 
+							&& guiBoard[r][c].getOwner() != null){
+						if(guiBoard[r][c].getPieceID() == "Rook" 
+								|| guiBoard[r][c].getPieceID() == "Queen"){
+							return true;
 						}
 					}
 				}
 				
-			}			
+				if(tempBoardBishop[r][c] == 1){
+					if(guiBoard[r][c].getOwner() != playerToCheck 
+							&& guiBoard[r][c].getOwner() != null){
+						if(guiBoard[r][c].getPieceID() == "Bishop" 
+								|| guiBoard[r][c].getPieceID() == "Queen"){
+							return true;
+						}
+					}
+				}
+				
+				if(tempBoardKnight[r][c] == 1){
+					if(guiBoard[r][c].getOwner() != playerToCheck 
+							&& guiBoard[r][c].getOwner() != null){
+						if(guiBoard[r][c].getPieceID() == "Knight"){
+							return true;
+						}
+					}
+				}
+				
+				if(tempBoardPawn[r][c] == 2){
+					if(guiBoard[r][c].getOwner() != playerToCheck 
+							&& guiBoard[r][c].getOwner() != null){
+						if(guiBoard[r][c].getPieceID() == "Pawn"){
+							return true;
+						}
+					}
+				}
+			}
 		}
-
-		if(totalBoard[kingPosR][kingPosC] ==  1 ||
-				totalBoard[kingPosR][kingPosC] ==  2 && kingPosR < 8){
-			return true;
-		}
+		
 		return false;
 	}
 	
@@ -129,6 +175,7 @@ public class Game {
 				gameBoard[row][col].setIsEmpty(true);
 				gameBoard[row][col].setPosR(row);
 				gameBoard[row][col].setPosC(col);
+				gameBoard[row][col].setIcon(new ImageIcon(""));
 			}
 		}
 
@@ -261,16 +308,16 @@ public class Game {
 				if(board[r][c] == 1){
 					
 					guiBoard[r][c].setEnabled(true);
-					guiBoard[r][c].setForeground(Color.GREEN);
+					guiBoard[r][c].setBorder(BorderFactory.createLineBorder(Color.green));
 					
 				} else if(guiBoard[r][c].getOwner() == currentPlayersTurn){
 					
 					guiBoard[r][c].setEnabled(true);
-					guiBoard[r][c].setForeground(null);
+					guiBoard[r][c].setBorder(null);
 					
 				} else {
 					guiBoard[r][c].setEnabled(false);
-					guiBoard[r][c].setForeground(null);
+					guiBoard[r][c].setBorder(null);
 				}
 					
 			}

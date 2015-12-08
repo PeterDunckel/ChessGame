@@ -38,9 +38,7 @@ public class Queen extends Piece {
 		
 		for( int ii = 1; ii <= 7 ; ii++ ){			
 			Spot temp = board[positionR][positionC]; //set spot to be looked
-													//at on the game board		
-			
-			
+													//at on the game board
 			
 			//at on the game board			
 			//Move Straight Across		
