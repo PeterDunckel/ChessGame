@@ -35,12 +35,10 @@ public class Piece {
 		isOwner = isO;
 	}
 	
-	//Virtual function
-	
+	//Virtual function	
 	public int[][] possibleMoves(Spot[][] gameBoard) {
 		return null;
 	}
-	
 	
 	//Set and Get Functions
 	public void setPositionR(int posR) {
